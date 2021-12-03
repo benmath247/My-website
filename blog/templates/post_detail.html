@@ -8,6 +8,25 @@
 <form method="post" action="{% url 'add_comment' post.title %}">
     {% csrf_token %}
     {{ comment_form }}
-    <button>submit</button>
 </form>
+<div class="container">
+
+
+    {% if not post.comments.all %}
+    No comments yet...
+
+    <br>
+    {% else %}
+    <br>
+    {% for comment in post.comments.all %}
+    <div class="card">
+        {{ comment.comment }}<br>
+        <small>
+            {{ comment.date_added }}
+        </small><br>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
 {% endblock %}
