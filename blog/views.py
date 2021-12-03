@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .models import Post
+from django.shortcuts import redirect, render
+from .models import Post, Comment
+from .forms import CommentForm
 
 
 def blog(request):
@@ -9,7 +10,20 @@ def blog(request):
 
 def post_detail(request, title):
     post = Post.objects.get(title=title)
-    return render(request, "post_detail.html", {"post": post})
+    form = CommentForm
+    return render(request, "post_detail.html", {"post": post, "comment_form": form})
+
+
+def add_comment(request, title):
+    if request.method == "GET":
+        form = CommentForm()
+        return render(request, "add_comment.html", context={"comment_form": form})
+
+    if request.method == "POST":
+        body = request.POST.get("body")
+        post = Post.objects.get(title=title)
+        Comment.objects.create(body=body, post=post)
+        return redirect("home")
 
 
 def home(request):
