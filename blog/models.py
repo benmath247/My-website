@@ -7,6 +7,7 @@ class Post(models.Model):
     intro = models.TextField(max_length=180)
     body = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+    photo = models.ImageField(null=True, blank=True)
 
     def slug(self):
         return slugify(self.title)

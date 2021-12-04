@@ -19,6 +19,71 @@
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="blog.css" rel="stylesheet">
+    <style>
+        img {
+            max-width: 40%;
+            max-height: 40%;
+            display: block;
+            padding: 10px;
+            /* remove extra space below image */
+        }
+
+        .box {
+            width: 250px;
+            border: 5px solid black;
+        }
+
+        .box.large {
+            height: 300px;
+        }
+
+        .box.small {
+            height: 100px;
+        }
+
+        .typewriter h1 {
+            overflow: hidden;
+            /* Ensures the content is not revealed until the animation */
+            border-right: .15em solid orange;
+            /* The typwriter cursor */
+            white-space: nowrap;
+            /* Keeps the content on a single line */
+            margin: 0 auto;
+            /* Gives that scrolling effect as the typing happens */
+            letter-spacing: .15em;
+            /* Adjust as needed */
+            animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        /* The typing effect */
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: rgb(168, 160, 160);
+            }
+        }
+    </style>
+
+</head>
+</style>
 </head>
 
 <body>
@@ -27,10 +92,13 @@
 
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
-                <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
-                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and
-                    efficiently about what's most interesting in this post's contents.</p>
-                <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+                <div class="typewriter">
+                    <h1>Welcome to my blog!</h1>
+                </div>
+                <p class="lead my-3">I hope you enjoy reading about my journey through various programming languages to
+                    pursue my career in building the latest and greatest technologies.</p>
+                <p class="lead mb-0"><a href="{% url 'contact' %}" class="text-white font-weight-bold">Hire me for your
+                        next project</a></p>
             </div>
         </div>
         <div class="row mb-2">
@@ -46,8 +114,10 @@
                         <p class="card-text mb-auto">{{ post.intro }}</p>
                         <a href="{% url 'post_detail' post.title %}">Continue reading</a>
                     </div>
-                    <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb"
+
+                    <img class="card-img-right flex-auto d-none d-md-block" src="{{ post.photo.url }}"
                         alt="Card image cap">
+
                 </div>
             </div>
             {% endfor %}
