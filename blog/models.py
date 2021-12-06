@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from embed_video.fields import EmbedVideoField, EmbedVideoFormField
 
 
 class Category(models.Model):
@@ -18,6 +19,7 @@ class Post(models.Model):
     category = models.ForeignKey(
         "Category", null=True, blank=True, on_delete=models.CASCADE
     )
+    video = models.FileField(upload_to="static/videos/", null=True, verbose_name="")
 
     def slug(self):
         return slugify(self.title)
