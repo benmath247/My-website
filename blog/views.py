@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Post, Comment
+from .models import Category, Post, Comment
 from .forms import CommentForm, ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
@@ -38,6 +38,11 @@ def contact(request):
 def blog(request):
     posts = Post.objects.all()
     return render(request, "blog.html", {"posts": posts})
+
+
+def category(request):
+    categories = Category.objects.all()
+    return render(request, "home.html", {"categories": categories})
 
 
 def post_detail(request, title):
