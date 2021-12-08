@@ -3,7 +3,7 @@
 {% block content %}
 <h1 class="title">{{ post.title }}</h1>
 <small>Posted at {{ post.date_added }}</small><br>
-{{ post.body }}
+{{ post.body | safe }}
 <hr>
 <form method="post" action="{% url 'add_comment' post.title %}">
     {% csrf_token %}

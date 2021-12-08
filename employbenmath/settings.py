@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "blog",
     "captcha",
     "embed_video",
+    "ckeditor",
 ]
 
 MIDDLEWARE = [
