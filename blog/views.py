@@ -64,4 +64,6 @@ def add_comment(request, title):
 
 
 def home(request):
-    return render(request, "home.html")
+    all_categories = Category.objects.all()
+    context = {"all_categories": all_categories}
+    return render(request, "home.html", context)

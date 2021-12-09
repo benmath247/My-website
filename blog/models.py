@@ -26,7 +26,7 @@ class Post(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(null=True, blank=True)
     category = models.ForeignKey(
-        "Category", null=True, blank=True, on_delete=models.CASCADE
+        Category, null=True, blank=True, on_delete=models.CASCADE
     )
     video = models.FileField(upload_to="static/videos/", null=True, verbose_name="")
 
